@@ -26,8 +26,8 @@ Enemy.prototype.render = function() {
 
 // Now write your own player class
 var Player = function(){
-  this.x = 50;
-  this.y = 50;
+  this.x = 202;
+  this.y = 380;
   this.sprite = "images/char-boy.png";
 }
 // This class requires an update(), render() and
