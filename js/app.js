@@ -49,7 +49,7 @@ Player.prototype.update = function(dt) {
 
 // Now instantiate your objects.
 // Creating enemy objects
-const bugOne = new Enemy(10, 10, 5);
+const bugOne = new Enemy(10, 225, 5);
 
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [bugOne];
