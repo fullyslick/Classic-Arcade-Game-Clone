@@ -28,9 +28,12 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-
 // Now instantiate your objects.
+// Creating enemy objects
+const bugOne = new Enemy(10, 10, 5);
+
 // Place all enemy objects in an array called allEnemies
+const allEnemies = [bugOne];
 // Place the player object in a variable called player
 
 
