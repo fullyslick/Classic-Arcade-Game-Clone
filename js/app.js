@@ -1,13 +1,14 @@
 // Enemies our player must avoid
-var Enemy = function( posY) {
+var Enemy = function(posY) {
     // Holds the default x position of all enemies.
     // They all should appear from the most left postion just before the canvas.
     this.defaultX = -83;
 
-    // Holds the starting x postion of enemies.
+    // Holds X postion of enemies.
+    // When created, every enemy takes the default x position.
     this.x = this.defaultX;
 
-    // Holds the starting y postion of enemies.
+    // Holds Y postion of enemies.
     this.y = posY;
 
     // These are the 3 options of the y postion where the enemy can reapear when it leaves the canvas.
@@ -63,12 +64,24 @@ Enemy.prototype.render = function() {
 
 // Now write your own player class.
 var Player = function(){
+  // Holds X postion of player.
   this.x = 202;
+
+  // Holds Y postion of player.
   this.y = 380;
+
+  // Holds the value movement on X axis.
+  // Will be modfied by Player.prototype.handleInput method.
+  this.moveXWith = 0;
+
+  // Holds the value movement on Y axis.
+  // Will be modfied by Player.prototype.handleInput method.
+  this.moveYWith = 0;
+
+  // The image/sprite for our enemies, this uses
+  // a helper we've provided to easily load images.
   this.sprite = "images/char-boy.png";
 }
-// This class requires an update(), render() and
-// a handleInput() method.
 
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
@@ -76,11 +89,47 @@ Player.prototype.render = function() {
 };
 
 // Update the player's position, required method for game
-// Parameter: dt, a time delta between ticks.
-Player.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+Player.prototype.update = function() {
+    // This is how the X position of the player changes
+    this.x += this.moveXWith;
+
+    // moveXWith property should be reset to 0, or the player will not stop to move and will go out of the canvas
+    this.moveXWith = 0;
+
+    // This is how the Y position of the player changes
+    this.y += this.moveYWith;
+
+    // moveYWith property should be reset to 0, or the player will not stop to move and will go out of the canvas
+    this.moveYWith = 0;
+};
+
+// Handles the keyboard input for the player object.
+// Called from the eventlistner at the bottom.
+Player.prototype.handleInput = function(keyPressed){
+
+  // Detects which key was pressed.
+  switch (keyPressed) {
+    case 'up':
+      // If it's 'up' change the Y position of player with -83.
+      // This happens in Player.prototype.update above.
+      this.moveYWith = -83;
+      break;
+
+    case 'down':
+
+      this.moveYWith = 83;
+      break;
+
+    case 'right':
+
+      this.moveXWith = 101;
+      break;
+
+    case 'left':
+
+      this.moveXWith = -101;
+      break;
+  }
 };
 
 // Now instantiate your objects.
