@@ -68,7 +68,7 @@ var Player = function() {
   this.defaultX = 202;
 
   // Holds the default Y position of player.
-  this.defaultY = 380;
+  this.defaultY = 391;
 
   // Holds X postion of player.
   this.x = this.defaultX;
@@ -109,7 +109,7 @@ Player.prototype.update = function() {
   this.moveYWith = 0;
 
   // Detect if the player has reached the win postion (blue waters)
-  if (this.y == -35) {
+  if (this.y == -46) {
     // Game is now over this will trigger reset() method in engine.js
     isGameOver = true;
 
@@ -125,7 +125,7 @@ Player.prototype.handleInput = function(keyPressed) {
   switch (keyPressed) {
     case 'up':
       // Detects if the player is within bottom the boundary of canvas.
-      if (this.y == - 35) {
+      if (this.y <= - 24) {
         this.moveYWith = 0;
       } else {
         // If it the pressed button is'up' and it's with in the bondry of canvas,
@@ -137,7 +137,7 @@ Player.prototype.handleInput = function(keyPressed) {
 
     case 'down':
       // Detects if the player is within bottom the boundary of canvas.
-      if (this.y == 380) {
+      if (this.y >= 391) {
         this.moveYWith = 0;
       } else {
         this.moveYWith = 83;
