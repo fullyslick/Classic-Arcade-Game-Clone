@@ -110,11 +110,7 @@ Player.prototype.update = function() {
 
   // Detect if the player has reached the win postion (blue waters)
   if (this.y == -35) {
-    // Reset the postion of player
-    player.x = player.defaultX;
-    player.y = player.defaultY;
-
-    // Game is now over this will trigger reset method in engine.js
+    // Game is now over this will trigger reset() method in engine.js
     isGameOver = true;
 
     whyGameIsOver = "Success";
@@ -166,6 +162,16 @@ Player.prototype.handleInput = function(keyPressed) {
       }
       break;
   }
+};
+
+// Reset the position of player method.
+// Called from engine.js reset() method when game is over.
+Player.prototype.resetPosition = function(){
+
+  // Reset the postion of player
+  this.x = this.defaultX;
+  this.y = this.defaultY;
+
 };
 
 // Now instantiate your objects.

@@ -164,9 +164,9 @@ var Engine = (function(global) {
         player.render();
     }
 
-    /* This function does nothing but it could have been a good place to
-     * handle game reset states - maybe a new game menu or a game over screen
-     * those sorts of things. It's only called once by the init() method.
+    /* Handle game reset state.
+     * It's called once by the init() method
+     * and in main(), when isGameOver becomes true.
      */
     function reset() {
 
@@ -180,6 +180,8 @@ var Engine = (function(global) {
           console.log("You Won");
           // To:DO display success message
 
+          // Reset the position of the player
+          player.resetPosition();
           // Player has won so game
           isGameOver = false;
           break;
