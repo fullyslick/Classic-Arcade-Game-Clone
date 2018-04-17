@@ -1,8 +1,13 @@
 // Enemies our player must avoid
-var Enemy = function(posX, posY) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-    this.x = posX;
+var Enemy = function( posY) {
+    // Holds the default x position of all enemies.
+    // They all should appear from the most left postion just before the canvas.
+    this.defaultX = -83;
+
+    // Holds the starting x postion of enemies.
+    this.x = this.defaultX;
+
+    // Holds the starting y postion of enemies.
     this.y = posY;
 
     // These are the 3 options of the y postion where the enemy can reapear when it leaves the canvas
@@ -40,8 +45,8 @@ Enemy.prototype.update = function(dt) {
   // When enemy goes out the canvas it should reappear again on left
   if (this.x > canvas.width) {
 
-  // Set the enemy to the left most position
-  this.x = 0;
+  // Set the enemy to the left most position ( defaultX ).
+  this.x = this.defaultX;
 
   // Assign random Y postion of enemy from the 3 posibble options
   this.y = this.changeY();
@@ -80,7 +85,7 @@ Player.prototype.update = function(dt) {
 
 // Now instantiate your objects.
 // Creating enemy objects
-const bugOne = new Enemy(10, 59);
+const bugOne = new Enemy(59);
 
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [bugOne];
