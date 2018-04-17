@@ -110,27 +110,48 @@ Player.prototype.handleInput = function(keyPressed) {
   // Detects which key was pressed.
   switch (keyPressed) {
     case 'up':
-
-      // If it's 'up' change the Y position of player with -83.
-      // This happens in Player.prototype.update above.
-      this.moveYWith = -83;
+      // Detects if the player is within bottom the boundary of canvas.
+      if (this.y == -35) {
+        // TO:DO Should reser game here!!!
+        this.moveYWith = 0;
+      } else {
+        // If it the pressed button is'up' and it's with in the bondry of canvas,
+        // change the Y position of player with -83.
+        // This happens in Player.prototype.update above.
+        this.moveYWith = -83;
+      }
       break;
 
     case 'down':
-
-      this.moveYWith = 83;
+      // Detects if the player is within bottom the boundary of canvas.
+      if (this.y == 380) {
+        this.moveYWith = 0;
+      } else {
+        this.moveYWith = 83;
+      }
       break;
 
     case 'right':
-
-      this.moveXWith = 101;
+      // Detects if the player is within right the boundary of canvas.
+      if (this.x == 404) {
+        this.moveXWith = 0;
+      } else {
+        this.moveXWith = 101;
+      }
       break;
 
     case 'left':
-
-      this.moveXWith = -101;
+      // Detects if the player is within the left boundary of canvas.
+      if (this.x == 0) {
+        this.moveXWith = 0;
+      } else {
+        this.moveXWith = -101;
+      }
       break;
   }
+
+  console.log(`X is ${this.x}
+    Y is ${this.y}`);
 };
 
 // Now instantiate your objects.
