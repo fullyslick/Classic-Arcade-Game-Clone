@@ -164,9 +164,6 @@ Player.prototype.handleInput = function(keyPressed) {
       }
       break;
   }
-
-  console.log(`X is ${this.x}
-    Y is ${this.y}`);
 };
 
 // Now instantiate your objects.
