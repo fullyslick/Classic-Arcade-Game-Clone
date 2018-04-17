@@ -1,10 +1,14 @@
 // Enemies our player must avoid
-var Enemy = function(posX, posY, speed) {
+var Enemy = function(posX, posY) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = posX;
     this.y = posY;
-    this.speed = speed;
+    // there are 3 different values for speed: slow, medium, fast
+    this.speedOptions = [200, 300, 400];
+
+    // the speed gets reandom value from the given three options above
+    this.speed = this.speedOptions[Math.floor(Math.random() * this.speedOptions.length)];
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -14,6 +18,7 @@ var Enemy = function(posX, posY, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+
     this.x += this.speed * dt;
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
@@ -49,7 +54,7 @@ Player.prototype.update = function(dt) {
 
 // Now instantiate your objects.
 // Creating enemy objects
-const bugOne = new Enemy(10, 225, 5);
+const bugOne = new Enemy(10, 225);
 
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [bugOne];
