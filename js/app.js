@@ -4,11 +4,17 @@ var Enemy = function(posX, posY) {
     // we've provided one for you to get started
     this.x = posX;
     this.y = posY;
+
     // there are 3 different values for speed: slow, medium, fast
     this.speedOptions = [200, 300, 400];
 
-    // the speed gets reandom value from the given three options above
-    this.speed = this.speedOptions[Math.floor(Math.random() * this.speedOptions.length)];
+    // this function chooses returns a random value from the speedOptions
+    this.chooseSpeed = function(){
+      return this.speedOptions[Math.floor(Math.random() * this.speedOptions.length)];
+    };
+
+    // assign the return value of chooseSpeed() method to the speed property of the Enemy objects
+    this.speed = this.chooseSpeed();
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -18,11 +24,20 @@ var Enemy = function(posX, posY) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+  // You should multiply any movement by the dt parameter
+  // which will ensure the game runs at the same speed for
+  // all computers.
+  this.x += this.speed * dt;
 
-    this.x += this.speed * dt;
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+  // When enemy goes out the canvas it should reappear again on left
+  if (this.x > canvas.width) {
+
+  // Set the enemy to the left most position
+  this.x = 0;
+
+  // And change the speed of the enemy when it reapers
+  this.speed = this.chooseSpeed();
+  }
 };
 
 // Draw the enemy on the screen, required method for game
