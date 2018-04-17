@@ -178,26 +178,6 @@ var Engine = (function(global) {
         // Reset the postion of player
         player.x = player.defaultX;
         player.y = player.defaultY;
-
-        // Holds default Y postion of enemies
-        let enemyDefaultY = 59;
-
-        // Reset the position of all enemies
-        allEnemies.forEach(function(enemy, index) {
-            // All enemies share same default X position.
-            enemy.x = enemy.defaultX;
-
-            // But by default every enemy should appear above each other
-            // So if this is the first enemy place it on top of all enemies.
-            if (index !== 0) {
-              enemyDefaultY += 83;
-            }
-
-            enemy.y = enemyDefaultY;
-
-            // And change the speed of every enemy, to be different from the speed before teh game ended.
-            enemy.speed = enemy.chooseSpeed();
-        });
     }
 
     /* Go ahead and load all of the images we know we're going to need to
