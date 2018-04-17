@@ -57,6 +57,13 @@ var Engine = (function(global) {
          * THIS IS WHAT IS USED INTSTEAD OF INTRVAL. THIS CREATES THE LOOP!
          */
         win.requestAnimationFrame(main);
+
+        // Check If the game is over.
+        // The variable isGameOver is changed in the Player.prototype.update.
+        if (isGameOver) {
+          // If game is over call the reset() method, to reset the game.
+          reset();
+        }
     }
 
     /* This function does some initial setup that should only occur once,
@@ -163,6 +170,14 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        console.log("Reset Game");
+
+        // Games is reseted so game is not over, it's starts again.
+        isGameOver = false;
+
+        // Reset the postion of player
+        player.y = 380;
+        player.x = 202;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -184,4 +199,6 @@ var Engine = (function(global) {
      */
     global.ctx = ctx;
     global.canvas = canvas;
+    // Global variable to check if game is over
+    global.isGameOver = false;
 })(this);

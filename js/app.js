@@ -101,6 +101,11 @@ Player.prototype.update = function() {
 
   // moveYWith property should be reset to 0, or the player will not stop to move and will go out of the canvas
   this.moveYWith = 0;
+
+  // Detect if the player has reached the win postion (blue waters)
+  if (this.y == -35) {
+    isGameOver = true;
+  }
 };
 
 // Handles the keyboard input for the player object.
@@ -111,8 +116,7 @@ Player.prototype.handleInput = function(keyPressed) {
   switch (keyPressed) {
     case 'up':
       // Detects if the player is within bottom the boundary of canvas.
-      if (this.y == -35) {
-        // TO:DO Should reser game here!!!
+      if (this.y == - 35) {
         this.moveYWith = 0;
       } else {
         // If it the pressed button is'up' and it's with in the bondry of canvas,
