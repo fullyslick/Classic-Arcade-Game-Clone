@@ -55,6 +55,19 @@ Enemy.prototype.update = function(dt) {
     // And change the speed of the enemy when it reapers.
     this.speed = this.chooseSpeed();
   }
+
+  // Checks for collisions between player and enemies.
+  // If the player is on enemy register a collison
+  // right bound of enemy = enemy.x + 101;
+  // right bound of player = player.x + 81; Player appears a bit narrow
+  if (player.y == this.y && player.x < this.x + 81  &&  player.x + 81 > this.x) {
+
+    // Game should over, because the player dies.
+    isGameOver = true;
+
+    // Change the reason of game over to notify reset(), which will show a proper message.
+    whyGameIsOver = "Collision";
+  }
 };
 
 // Draw the enemy on the screen, required method for game.
