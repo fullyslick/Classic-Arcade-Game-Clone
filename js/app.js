@@ -64,11 +64,17 @@ Enemy.prototype.render = function() {
 
 // Now write your own player class.
 var Player = function() {
+  // Holds the default X position of player.
+  this.defaultX = 202;
+
+  // Holds the default Y position of player.
+  this.defaultY = 380;
+
   // Holds X postion of player.
-  this.x = 202;
+  this.x = this.defaultX;
 
   // Holds Y postion of player.
-  this.y = 380;
+  this.y = this.defaultY;
 
   // Holds the value movement on X axis.
   // Will be modfied by Player.prototype.handleInput method.
