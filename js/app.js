@@ -109,7 +109,7 @@ Player.prototype.update = function() {
   this.moveYWith = 0;
 
   // Detect if the player has reached the win postion (blue waters)
-  if (this.y == -46) {
+  if (this.y == -24) {
     // Game is now over this will trigger reset() method in engine.js
     isGameOver = true;
 
