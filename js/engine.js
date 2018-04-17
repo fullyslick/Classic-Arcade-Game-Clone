@@ -174,10 +174,6 @@ var Engine = (function(global) {
 
         // Games is reseted so game is not over, it's starts again.
         isGameOver = false;
-
-        // Reset the postion of player
-        player.x = player.defaultX;
-        player.y = player.defaultY;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
