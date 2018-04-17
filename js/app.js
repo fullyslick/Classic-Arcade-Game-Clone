@@ -87,8 +87,15 @@ Player.prototype.update = function(dt) {
 // Creating enemy objects.
 const bugOne = new Enemy(59);
 
+// The second enemy should appear on the middle line
+const bugTwo = new Enemy(142);
+
+// The third enemy should appear on the lower line
+const bugThree = new Enemy(225);
+
 // Place all enemy objects in an array called allEnemies
-const allEnemies = [bugOne];
+const allEnemies = [bugOne, bugTwo, bugThree];
+
 // Place the player object in a variable called player
 const player = new Player();
 
