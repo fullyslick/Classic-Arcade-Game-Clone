@@ -5,15 +5,24 @@ var Enemy = function(posX, posY) {
     this.x = posX;
     this.y = posY;
 
-    // there are 3 different values for speed: slow, medium, fast
+    // These are the 3 options of the y postion where the enemy can reapear when it leaves the canvas
+    this.yOptions = [225, 142, 59];
+
+    // Returns a random value from the yOptions
+    this.changeY = function(){
+      return this.yOptions[Math.floor(Math.random() * this.yOptions.length)];
+    };
+
+    // There are 3 different values for speed: slow, medium, fast
     this.speedOptions = [200, 300, 400];
 
-    // this function chooses returns a random value from the speedOptions
+    // Returns a random value from the speedOptions
     this.chooseSpeed = function(){
       return this.speedOptions[Math.floor(Math.random() * this.speedOptions.length)];
     };
 
-    // assign the return value of chooseSpeed() method to the speed property of the Enemy objects
+    // Assign the return value of chooseSpeed() method to the speed property of the Enemy objects,
+    // so when it first appear it will get 1 of the 3 posibble speeds
     this.speed = this.chooseSpeed();
 
     // The image/sprite for our enemies, this uses
@@ -21,7 +30,6 @@ var Enemy = function(posX, posY) {
     this.sprite = 'images/enemy-bug.png';
 };
 
-// Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
   // You should multiply any movement by the dt parameter
@@ -34,6 +42,9 @@ Enemy.prototype.update = function(dt) {
 
   // Set the enemy to the left most position
   this.x = 0;
+
+  // Assign random Y postion of enemy from the 3 posibble options
+  this.y = this.changeY();
 
   // And change the speed of the enemy when it reapers
   this.speed = this.chooseSpeed();
@@ -69,7 +80,7 @@ Player.prototype.update = function(dt) {
 
 // Now instantiate your objects.
 // Creating enemy objects
-const bugOne = new Enemy(10, 225);
+const bugOne = new Enemy(10, 59);
 
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [bugOne];
