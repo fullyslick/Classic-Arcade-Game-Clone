@@ -169,11 +169,29 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
-        console.log("Reset Game");
 
-        // Games is reseted so game is not over, it's starts again.
-        isGameOver = false;
+        switch(whyGameIsOver){
+          case "Start":
+          // TO:DO display welcome message
+          console.log("Start Game");
+          break;
+
+          case "Success":
+          console.log("You Won");
+          // To:DO display success message
+
+          // Player has won so game
+          isGameOver = false;
+          break;
+
+          case "Collision":
+          console.log("You were killed");
+          // To:DO display collison message message
+
+          // Player has won so game
+          isGameOver = false;
+          break;
+        }
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -197,4 +215,11 @@ var Engine = (function(global) {
     global.canvas = canvas;
     // Global variable to check if game is over
     global.isGameOver = false;
+    // Global variable which holds the reason for Game Over.
+    // It will be used to determine what message should display the modal in reset() method above.
+    // It has 3 possible options:
+    // "Start"- The game is about to start, this is the default value;
+    // "Collision" - The player has collided with an enemy;
+    // "Success" - The player has reached successfully the end point;
+    global.whyGameIsOver = "Start";
 })(this);

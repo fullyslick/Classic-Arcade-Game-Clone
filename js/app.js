@@ -116,6 +116,8 @@ Player.prototype.update = function() {
 
     // Game is now over this will trigger reset method in engine.js
     isGameOver = true;
+
+    whyGameIsOver = "Success";
   }
 };
 
