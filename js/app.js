@@ -135,6 +135,9 @@ Player.prototype.update = function() {
 // Called from the eventlistner at the bottom.
 Player.prototype.handleInput = function(keyPressed) {
 
+  // Block player from moving when game is over.
+  if(!isGameOver){
+
   // Detects which key was pressed.
   switch (keyPressed) {
     case 'up':
@@ -175,6 +178,7 @@ Player.prototype.handleInput = function(keyPressed) {
         this.moveXWith = -101;
       }
       break;
+   }
   }
 };
 
