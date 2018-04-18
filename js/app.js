@@ -36,7 +36,7 @@ var Enemy = function(posY) {
   this.sprite = 'images/enemy-bug.png';
 };
 
-// Parameter: dt, a time delta between ticks.
+// @param {number} dt, a time delta between ticks.
 Enemy.prototype.update = function(dt) {
   // You should multiply any movement by the dt parameter
   // which will ensure the game runs at the same speed for
@@ -121,11 +121,12 @@ Player.prototype.update = function() {
   // moveYWith property should be reset to 0, or the player will not stop to move and will go out of the canvas
   this.moveYWith = 0;
 
-  // Detect if the player has reached the win postion (blue waters)
+  // Detect if the player has reached the win postion (blue waters).
   if (this.y == -24) {
     // Game is now over this will trigger reset() method in engine.js
     isGameOver = true;
 
+    // Notifies reset() method in engine.js to implement proper behavior.
     whyGameIsOver = "Success";
   }
 };
@@ -137,7 +138,7 @@ Player.prototype.handleInput = function(keyPressed) {
   // Detects which key was pressed.
   switch (keyPressed) {
     case 'up':
-      // Detects if the player is within bottom the boundary of canvas.
+      // Detects if the player is within top the boundary of canvas.
       if (this.y <= - 24) {
         this.moveYWith = 0;
       } else {

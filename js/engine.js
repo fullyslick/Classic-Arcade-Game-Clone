@@ -58,8 +58,11 @@ var Engine = (function(global) {
          */
         win.requestAnimationFrame(main);
 
-        // Check If the game is over.
-        // The variable isGameOver is changed in the Player.prototype.update.
+        /*
+         * Check if the game is over.
+         * The variable isGameOver is changes in the Player.prototype.update, when player reach win position.
+         * The variable isGameOver is changes in the Enemy.prototype.update, when collison is detected.
+         */
         if (isGameOver) {
           // If game is over call the reset() method, to reset the game.
           reset();
@@ -164,13 +167,12 @@ var Engine = (function(global) {
         player.render();
     }
 
-    /* Handle game reset state.
-     * It's called once by the init() method
-     * and in main(), when isGameOver becomes true.
+    /* @description Handle game reset state.
+     * It's called once by the init() method and in main(), when isGameOver becomes true.
+     * Implements different behaviors depending on the reason why game is over.
      */
     function reset() {
 
-        // Implement a proper behavior depending on reason why game is over.
         switch(whyGameIsOver){
 
           // When game starts.
