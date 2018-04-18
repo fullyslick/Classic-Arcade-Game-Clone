@@ -188,7 +188,6 @@ var Engine = (function(global) {
 
           // When player reaches the win position.
           case "Success":
-          console.log("You Won");
 
           // Display success message.
           displayWin();
