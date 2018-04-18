@@ -181,7 +181,6 @@ var Engine = (function(global) {
           // TO:DO display welcome message
           displayBegin();
 
-          console.log("Start Game");
           break;
 
           // When player reaches the win position.
