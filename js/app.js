@@ -1,17 +1,17 @@
 // Enemies our player must avoid
 var Enemy = function(posY) {
   // Holds the default x position of all enemies.
-  // They all should appear from the most left postion just before the canvas.
+  // They all should appear from the most left position just before the canvas.
   this.defaultX = -83;
 
-  // Holds X postion of enemies.
-  // When created, every enemy takes the default x position.
+  // Holds X position of enemies.
+  // When created, every enemy takes the default X position.
   this.x = this.defaultX;
 
-  // Holds Y postion of enemies.
+  // Holds Y position of enemies.
   this.y = posY;
 
-  // These are the 3 options of the y postion where the enemy can reapear when it leaves the canvas.
+  // These are the 3 options of the Y position where the enemy can reappear when it leaves the canvas.
   this.yOptions = [225, 142, 59];
 
   // Returns a random value from the yOptions.
@@ -19,10 +19,10 @@ var Enemy = function(posY) {
     return this.yOptions[Math.floor(Math.random() * this.yOptions.length)];
   };
 
-  // There are 3 different values for speed: slow, medium, fast.
+  // These are the 3 different values for speed: slow, medium, fast.
   this.speedOptions = [200, 300, 400];
 
-  // Returns a random value from the speedOptions.
+  // Holds random value from the speedOptions.
   this.chooseSpeed = function() {
     return this.speedOptions[Math.floor(Math.random() * this.speedOptions.length)];
   };
@@ -60,7 +60,7 @@ Enemy.prototype.update = function(dt) {
   // If the player is on enemy register a collison
   // right bound of enemy = enemy.x + 101;
   // right bound of player = player.x + 81; Player appears a bit narrow
-  if (player.y == this.y && player.x < this.x + 81  &&  player.x + 81 > this.x) {
+  if (player.y == this.y && player.x < this.x + 81 && player.x + 81 > this.x) {
 
     // Game should over, because the player dies.
     isGameOver = true;
@@ -136,55 +136,55 @@ Player.prototype.update = function() {
 Player.prototype.handleInput = function(keyPressed) {
 
   // Block player from moving when game is over.
-  if(!isGameOver){
+  if (!isGameOver) {
 
-  // Detects which key was pressed.
-  switch (keyPressed) {
-    case 'up':
-      // Detects if the player is within top the boundary of canvas.
-      if (this.y <= - 24) {
-        this.moveYWith = 0;
-      } else {
-        // If it the pressed button is'up' and it's with in the bondry of canvas,
-        // change the Y position of player with -83.
-        // This happens in Player.prototype.update above.
-        this.moveYWith = -83;
-      }
-      break;
+    // Detects which key was pressed.
+    switch (keyPressed) {
+      case 'up':
+        // Detects if the player is within top the boundary of canvas.
+        if (this.y <= -24) {
+          this.moveYWith = 0;
+        } else {
+          // If it the pressed button is'up' and it's with in the bondry of canvas,
+          // change the Y position of player with -83.
+          // This happens in Player.prototype.update above.
+          this.moveYWith = -83;
+        }
+        break;
 
-    case 'down':
-      // Detects if the player is within bottom the boundary of canvas.
-      if (this.y >= 391) {
-        this.moveYWith = 0;
-      } else {
-        this.moveYWith = 83;
-      }
-      break;
+      case 'down':
+        // Detects if the player is within bottom the boundary of canvas.
+        if (this.y >= 391) {
+          this.moveYWith = 0;
+        } else {
+          this.moveYWith = 83;
+        }
+        break;
 
-    case 'right':
-      // Detects if the player is within right the boundary of canvas.
-      if (this.x == 404) {
-        this.moveXWith = 0;
-      } else {
-        this.moveXWith = 101;
-      }
-      break;
+      case 'right':
+        // Detects if the player is within right the boundary of canvas.
+        if (this.x == 404) {
+          this.moveXWith = 0;
+        } else {
+          this.moveXWith = 101;
+        }
+        break;
 
-    case 'left':
-      // Detects if the player is within the left boundary of canvas.
-      if (this.x == 0) {
-        this.moveXWith = 0;
-      } else {
-        this.moveXWith = -101;
-      }
-      break;
-   }
+      case 'left':
+        // Detects if the player is within the left boundary of canvas.
+        if (this.x == 0) {
+          this.moveXWith = 0;
+        } else {
+          this.moveXWith = -101;
+        }
+        break;
+    }
   }
 };
 
 // Reset the position of player method.
 // Called from engine.js reset() method when game is over.
-Player.prototype.resetPosition = function(){
+Player.prototype.resetPosition = function() {
 
   // Reset the postion of player
   this.x = this.defaultX;
