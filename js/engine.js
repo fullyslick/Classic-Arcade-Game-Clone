@@ -170,12 +170,16 @@ var Engine = (function(global) {
      */
     function reset() {
 
+        // Implement a proper behavior depending on reason why game is over.
         switch(whyGameIsOver){
+
+          // When game starts.
           case "Start":
           // TO:DO display welcome message
           console.log("Start Game");
           break;
 
+          // When player reaches the win position.
           case "Success":
           console.log("You Won");
           // To:DO display success message
@@ -185,19 +189,53 @@ var Engine = (function(global) {
 
           // Player has won so game
           isGameOver = false;
+
           break;
 
+          // When collison happens
           case "Collision":
-          console.log("You were killed");
-          // To:DO display collison message message
+
+          // Show a red screen over the canvas to make collison more stressful.
+          // It also resets to the default isGameOver notifier.
+          showRedScreen();
+
           // Reset the position of the player
           player.resetPosition();
 
-          // Player has won so game
-          isGameOver = false;
           break;
         }
     }
+
+     // Counter of frames after which the red screen should disappear.
+     let backToGameCounter = 10;
+
+     /*
+      * @description Displays red screen when collision is detected
+      */
+     function showRedScreen(){
+
+      /*
+       * This is the red screen rectangle with a little opacity.
+       * It will appear over the canvas.
+       */
+       ctx.fillStyle = "rgba(255, 0, 0, 0.6)";
+       ctx.fillRect(0, 50, canvas.width, canvas.height - 70);
+
+       // Decrement backToGameCounter by 1.
+       backToGameCounter -= 1;
+
+      /*
+       * When counter reaches 0,
+       * Reset the state isGameOver notifier, which will remove the red screen, too.
+       * Reset the counter which is used to determine when to remove red screen.
+       */
+       if (backToGameCounter == 0) {
+
+         isGameOver = false;
+
+         backToGameCounter = 10;
+       }
+     }
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
