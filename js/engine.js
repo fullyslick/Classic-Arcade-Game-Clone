@@ -288,7 +288,7 @@ var Engine = (function(global) {
 
          // Display background with opacity to make begin text more highlighted.
          ctx.fillStyle = "rgba(79, 189, 84, 0.5)";
-         ctx.fillRect(0, 30, canvas.width, canvas.height - 70);
+         ctx.fillRect(0, 30, canvas.width, canvas.height - 50);
 
          // 'You Win!' text styling and declaring.
          ctx.fillStyle = "#ffffff";
