@@ -177,8 +177,11 @@ var Engine = (function(global) {
 
           // When game starts.
           case "Start":
+
+          // This blocks the player from moving and handles the appearance of welcome screen.
           isGameOver = true;
-          // TO:DO display welcome message
+
+          // Display welcome message
           displayBegin();
 
           break;
