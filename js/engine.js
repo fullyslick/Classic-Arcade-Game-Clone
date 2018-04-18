@@ -177,7 +177,10 @@ var Engine = (function(global) {
 
           // When game starts.
           case "Start":
+          isGameOver = true;
           // TO:DO display welcome message
+          displayBegin();
+
           console.log("Start Game");
           break;
 
@@ -238,6 +241,41 @@ var Engine = (function(global) {
          backToGameCounter = 10;
        }
      }
+
+      // Counter of frames after which the red screen should disappear.
+      let beginGameCounter = 100;
+
+      /*
+       * @description Displays begin screen.
+       */
+      function displayBegin(){
+
+        // Display background with opacity to make begin text more highlighted.
+        ctx.fillStyle = "rgba(23, 23, 23, 0.5)";
+        ctx.fillRect(0, 50, canvas.width, canvas.height - 70);
+
+        // 'Get Ready!' text styling and declaring.
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 36px Impact";
+        ctx.textAlign = "center";
+        ctx.fillText('Get Ready!', canvas.width / 2, canvas.height / 2);
+
+        ctx.strokeStyle = "#202020";
+        ctx.font = "bold 36px Impact";
+        ctx.textAlign = "center";
+        ctx.strokeText('Get Ready!', canvas.width / 2, canvas.height / 2);
+
+        // Decrement beginGameCounter by 1.
+        beginGameCounter -= 1;
+
+        /*
+         * When counter reaches 0,
+         * Reset the state isGameOver notifier, which will remove the welcome screen, too.
+         */
+        if (beginGameCounter == 0) {
+          isGameOver = false;
+        }
+      };
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
