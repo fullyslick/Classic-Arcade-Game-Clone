@@ -189,17 +189,13 @@ var Engine = (function(global) {
           // When player reaches the win position.
           case "Success":
           console.log("You Won");
-          // To:DO display success message
 
-          // Reset the position of the player
-          player.resetPosition();
-
-          // Player has won so game
-          isGameOver = false;
+          // Display success message.
+          displayWin();
 
           break;
 
-          // When collison happens
+          // When collison happens.
           case "Collision":
 
           // Show a red screen over the canvas to make collison more stressful.
@@ -244,7 +240,7 @@ var Engine = (function(global) {
        }
      }
 
-      // Counter of frames after which the red screen should disappear.
+      // Counter of frames after which the welcome screen should disappear.
       let beginGameCounter = 100;
 
       /*
@@ -273,11 +269,57 @@ var Engine = (function(global) {
         /*
          * When counter reaches 0,
          * Reset the state isGameOver notifier, which will remove the welcome screen, too.
+         * Reset the begin counter which will be used again when player wins the game.
          */
         if (beginGameCounter == 0) {
           isGameOver = false;
+
+          beginGameCounter = 100;
         }
       };
+
+      // Counter of frames after which the win screen should disappear and game will be restarted.
+      let restartGameCounter = 200;
+
+      /*
+       * @description Displays win screen.
+       */
+       function displayWin(){
+
+         // Display background with opacity to make begin text more highlighted.
+         ctx.fillStyle = "rgba(79, 189, 84, 0.5)";
+         ctx.fillRect(0, 30, canvas.width, canvas.height - 70);
+
+         // 'You Win!' text styling and declaring.
+         ctx.fillStyle = "#ffffff";
+         ctx.font = "normal 46px Impact";
+         ctx.textAlign = "center";
+         ctx.fillText('You Win!', canvas.width / 2, canvas.height / 2);
+
+         ctx.strokeStyle = "#202020";
+         ctx.font = "normal 46px Impact";
+         ctx.textAlign = "center";
+         ctx.strokeText('You Win!', canvas.width / 2, canvas.height / 2);
+
+         // Decrement restartGameCounter by 1.
+         restartGameCounter -= 1;
+
+         /*
+          * When counter reaches 0,
+          * Reset the position of the player.
+          * Reset the restartGameCounter, which will be used again when player wins the game.
+          * Do not change isGameOver notifier, just change the reason whyGameIsOver,
+          * this will run "Start" case in reset() on next flick, which will draw the begin screen.
+          */
+         if (restartGameCounter == 0) {
+           // Reset the position of the player.
+           player.resetPosition();
+
+           restartGameCounter = 200;
+
+           whyGameIsOver = "Start";
+         }
+       };
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
