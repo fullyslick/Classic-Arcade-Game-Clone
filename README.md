@@ -1,6 +1,10 @@
 Classic Arcade Game Clone
 ===============================
 
+<p align="center">
+  <img src="example.png" alt="Classic Arcade Game Clone Project Photo Example" />
+</p>
+
 # About
 This is my Classic Arcade Game Clone project for Udacity Frontend Nanodegree program. The project should recreate a classic arcade game mostly known as [Froger](https://en.wikipedia.org/wiki/Frogger).
 
